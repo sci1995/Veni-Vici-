@@ -12,20 +12,24 @@ const App = () => {
   const [history, setHistory] = useState([]);
   const [isCatDiscovered, setIsCatDiscovered] = useState(false); 
 
-
   const fetchNewCat = async () => {
     try {
       let catData = null; 
-  
       
-      while (!catData || banList.includes(catData.id) || !catData.breeds || catData.breeds.length === 0) {
-        const response = await fetch(`${API_URL}?limit=1`, {
-          headers: { 'x-api-key': API_KEY },
-        });
-        const data = await response.json();
-        catData = data[0]; 
-      }
-  
+      while (!catData || 
+        !catData.breeds || 
+        catData.breeds.length === 0 || 
+        (banList.includes(catData.breeds[0].name) ||
+         banList.includes(catData.breeds[0].temperament) ||
+         banList.includes(catData.breeds[0].origin) ||
+         banList.includes(catData.breeds[0].life_span))) {
+    const response = await fetch(`${API_URL}?limit=1`, {
+      headers: { 'x-api-key': API_KEY },
+    });
+    const data = await response.json();
+    catData = data[0]; 
+  }
+
       setCat(catData); 
       setHistory((prevHistory) => [...prevHistory, catData]);
       setIsCatDiscovered(true); 
@@ -33,7 +37,6 @@ const App = () => {
       console.error('Error fetching cat data:', error);
     }
   };
-
 
   const banCat = (catAttribute) => {
     if (!banList.includes(catAttribute)) {
@@ -45,20 +48,14 @@ const App = () => {
     <div>
       <div className="container">
         <BanList className="ban-list" banList={banList} />
-        
         <div className="cat-card">
           <h1>Veni Vici!</h1>
           <h3>Discover New Cats 🐈‍⬛ 😼 🐈 😸 🐾 😽</h3>
           <button onClick={fetchNewCat}>Discover New Cat 😻</button>
           {isCatDiscovered && cat.breeds && cat.breeds.length > 0 && (
-            <CatCard
-              cat={cat}
-              banCat={banCat}
-              fetchNewCat={fetchNewCat}
-            />
+            <CatCard cat={cat} banCat={banCat} fetchNewCat={fetchNewCat} />
           )}
         </div>
-
         {isCatDiscovered && <HistoryList className="history-list" history={history} />}
       </div>
     </div>

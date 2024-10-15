@@ -1,0 +1,120 @@
+body {
+  font-family: Arial, sans-serif; /* Use a consistent font family */
+  background-color: #b7c199; /* Light background for contrast */
+  margin: 0; /* Remove default body margin */
+}
+
+/* Main Container Styles */
+.container {
+  display: flex;
+  justify-content: center; /* Center items within the container */
+  align-items: flex-start; /* Align items to the start of the container */
+  width: 90%;
+  max-width: 2000px;
+  margin: 150px auto; /* Center container with top margin */
+  padding: 20px; /* Add padding for inner spacing */
+  background-color: #7995a4; /* White background for the container */
+  border-radius: 10px; /* Rounded corners for a modern look */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+/* Cat Card Styles */
+.cat-card {
+  flex: 2; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px; /* Adjusted padding for balance */
+  text-align: center; /* Center text within the card */
+  border: 1px solid #ddd; /* Light border around the card */
+  border-radius: 10px; /* Rounded corners */
+  background-color: #b7c199; /* Light gray background for the card */
+}
+
+/* Cat Image Styles */
+#cat-image {
+  width: 300px;
+  height: 300px; 
+  display: block; 
+  margin: 20px auto; /* Adjust margin for spacing */
+  border: 2px solid #4A90E2; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease; /* Scale effect on hover */
+}
+
+#cat-image:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Ban List and History Styles */
+.ban-list, .history-list {
+  width: 200px; 
+  margin: 0 20px; 
+}
+
+.history-list h2 {
+  margin-top: 20px; /* Add margin on top of history title */
+}
+
+/* Button Styles */
+button {
+  background-color:#073147;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px; /* Added padding for comfort */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform transition */
+  margin-top: 10px; /* Space between buttons */
+  width: 50%; /* Make buttons full width */
+  font-size: 1rem; /* Consistent font size */
+}
+
+button:hover {
+  background-color: #357ABD; /* Darker Blue on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .container {
+      flex-direction: column; /* Stack lists and card on mobile */
+      align-items: center; /* Center items in column layout */
+  }
+
+  .ban-list, .history-list {
+      width: 100%; /* Full width for mobile */
+      margin: 10px 0; /* Space between lists */
+  }
+
+  .cat-card {
+      margin: 10px 0; /* Space between the card and lists */
+  }
+
+  h1 {
+      font-size: 2rem;
+      text-align: center; /* Center heading */
+  }
+
+  h3 {
+      font-size: 1.25rem;
+      text-align: center; /* Center subheading */
+  }
+
+  img {
+      width: 100%;
+      height: auto;
+  }
+
+  button {
+      width: 100%; /* Full width for mobile buttons */
+      margin: 5px 0; /* Stacking buttons vertically */
+  }
+
+  li {
+      flex-direction: column; /* Stack image and text */
+      align-items: flex-start; /* Align text to the left */
+      text-align: left; /* Ensure text is left-aligned */
+  }
+}
